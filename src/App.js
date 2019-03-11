@@ -22,7 +22,6 @@ class App extends Component {
           }
         } 
         createNewProject=(name, description,completed)=>{
-          console.log("Add project ..", name, description)
           const newProject=
             {
              "name": name,
@@ -50,7 +49,6 @@ class App extends Component {
       refresh=()=>{
         const axios = require('axios');
 
-        console.log("Refresh called");
         const config = {	headers: {'Content-Type': 'application/json','Cache-Control' : 'no-cache'}};
         axios.get(this.state.API_URL + "api/projects")
        .then(res=>{
@@ -66,8 +64,6 @@ class App extends Component {
              .then(res=>{
                 console.log("DELETE RESPONSE",res)
                 this.refresh();
- 
- 
              })
              .catch(error=>{
                console.log(error)
@@ -84,11 +80,8 @@ class App extends Component {
      return (
        <div className="App">
        <h2>WELCOME TO THE PROJECTS</h2>
-       <ProjectList projects={this.state.projects} deleteHandler={this.deleteHandler} />
-       <PostForm submitFn={this.createNewProject}/>
- 
- 
-         
+        <ProjectList projects={this.state.projects} deleteHandler={this.deleteHandler} />
+        <PostForm submitFn={this.createNewProject}/>
        </div>
      );
    }
